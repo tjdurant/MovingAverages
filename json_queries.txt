@@ -1,0 +1,42 @@
+json queries
+
+{
+	"query": {
+		"query_string": {
+		    "default_field": "comp",
+		    "query": "GLUCOSE"
+		}
+	}
+}
+
+{
+   "query": {
+      "filtered": {
+         "query": {
+            "match_all": {}
+         },
+         "filter": {
+            "bool": {
+               "must": [
+                  {
+                     "term": {
+                        "comp": "GLUCOSE"
+                     }
+                  }
+                  
+               ]
+            }
+         }
+      }
+   }
+}
+
+{
+         "aggs": {
+			"average_glucose":{
+	         "filter": { "bool": {"must": [{"term": {"comp": "GLUCOSE"}}]}},
+	         mutate: {convert => { "fieldname" => "integer" }},
+	         "aggs": {"average_glucose": {"avg": {"field":"s_val"}}}
+			}
+		}
+      }

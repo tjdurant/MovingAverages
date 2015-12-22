@@ -1,0 +1,13 @@
+C:\Users\thoma\Documents\00GitHub\MovingTommy\Storage\bin\Debug\Storage.dll
+C:\Users\thoma\Documents\00GitHub\MovingTommy\Storage\bin\Debug\Storage.pdb
+C:\Users\thoma\Documents\00GitHub\MovingTommy\Storage\bin\Debug\Elasticsearch.Net.dll
+C:\Users\thoma\Documents\00GitHub\MovingTommy\Storage\bin\Debug\Nest.dll
+C:\Users\thoma\Documents\00GitHub\MovingTommy\Storage\bin\Debug\Newtonsoft.Json.dll
+C:\Users\thoma\Documents\00GitHub\MovingTommy\Storage\bin\Debug\Elasticsearch.Net.pdb
+C:\Users\thoma\Documents\00GitHub\MovingTommy\Storage\bin\Debug\Elasticsearch.Net.xml
+C:\Users\thoma\Documents\00GitHub\MovingTommy\Storage\bin\Debug\Nest.pdb
+C:\Users\thoma\Documents\00GitHub\MovingTommy\Storage\bin\Debug\Nest.xml
+C:\Users\thoma\Documents\00GitHub\MovingTommy\Storage\bin\Debug\Newtonsoft.Json.xml
+C:\Users\thoma\Documents\00GitHub\MovingTommy\Storage\obj\Debug\Storage.csprojResolveAssemblyReference.cache
+C:\Users\thoma\Documents\00GitHub\MovingTommy\Storage\obj\Debug\Storage.dll
+C:\Users\thoma\Documents\00GitHub\MovingTommy\Storage\obj\Debug\Storage.pdb
