@@ -8,7 +8,7 @@ json queries
 		}
 	}
 }
-
+nest insert numeric val
 {
    "query": {
       "filtered": {
@@ -35,7 +35,6 @@ json queries
          "aggs": {
 			"average_glucose":{
 	         "filter": { "bool": {"must": [{"term": {"comp": "GLUCOSE"}}]}},
-	         mutate: {convert => { "fieldname" => "integer" }},
 	         "aggs": {"average_glucose": {"avg": {"field":"s_val"}}}
 			}
 		}

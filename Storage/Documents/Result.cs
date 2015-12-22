@@ -11,7 +11,8 @@ namespace Storage.Documents
     // Elastic put-mapping; The put mapping API allows to register specific mapping 
     // definition for a specific type.
 
-    [ElasticType(Name = "moving_averages")]
+    [ElasticType(Name = "moving_averages" )]
+    
     public class Result
     {
         /*
@@ -51,8 +52,8 @@ namespace Storage.Documents
         public string Component { get; set; }
 
         
-        [ElasticProperty(Name = "s_val")]
-        public string StringValue { get; set; }
+        [ElasticProperty(Name = "s_val", NumericType = NumberType.Double)]
+        public double StringValue { get; set; }
         [ElasticProperty(Name = "d_val")]
         public double NumericValue { get; set; }
 
