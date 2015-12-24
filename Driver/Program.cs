@@ -64,8 +64,7 @@ namespace Driver
                         elastic.IndexMany<Result>(records);
                         records.Clear();
                     }
-                }
-                catch (Exception ex)
+                }catch (Exception ex)
                 {
                     Console.WriteLine(i.ToString());
 

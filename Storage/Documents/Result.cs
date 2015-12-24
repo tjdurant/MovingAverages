@@ -12,7 +12,6 @@ namespace Storage.Documents
     // definition for a specific type.
 
     [ElasticType(Name = "moving_averages" )]
-    
     public class Result
     {
         /*
@@ -47,14 +46,18 @@ namespace Storage.Documents
 
         [ElasticProperty(Name = "o_ts")]
         public string OrderTimestamp { get; set; }
+        
+        [ElasticProperty(Name = "@timestamp", Type = FieldType.Date, DateFormat = "yyyy-MM-dd'T'HH:mm:ss", Store = true)]
+        public DateTime Timestamp { get; set; }
 
         [ElasticProperty(Name = "comp", Index = FieldIndexOption.NotAnalyzed)]
         public string Component { get; set; }
 
         
-        [ElasticProperty(Name = "s_val", NumericType = NumberType.Double)]
-        public double StringValue { get; set; }
-        [ElasticProperty(Name = "d_val")]
+        [ElasticProperty(Name = "s_val")]
+        public string StringValue { get; set; }
+
+        [ElasticProperty(Name = "d_val", NumericType = NumberType.Double)]
         public double NumericValue { get; set; }
 
         [ElasticProperty(Name = "camp")]

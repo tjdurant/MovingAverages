@@ -21,7 +21,7 @@ namespace Driver
         public string ProcedureName { get; set; }
         public string OrderTimestamp { get; set; }
         public string Component { get; set; }
-        public double StringValue { get; set; }
+        public string StringValue { get; set; }
         public double NumericValue { get; set; }
         public string Campus { get; set; }
 
@@ -41,8 +41,10 @@ namespace Driver
             Map(m => m.ProcedureCode).Name("PROC_CODE");
             Map(m => m.ProcedureName).Name("PROC_NAME");
             Map(m => m.OrderTimestamp).Name("ORDER_DATE");
+            Map(m => m.Timestamp).Name("ORDER_DATE");
             Map(m => m.Component).Name("COMPONENT");
             Map(m => m.StringValue).Name("RESULT");
+            Map(m => m.NumericValue).Name("RESULT");
             Map(m => m.Campus).Name("CAMPUS");
         }
 
