@@ -12,12 +12,30 @@ namespace GetDataDriver
     {
         static void Main(string[] args)
         {
-            var uri = new Uri("http://localhost:9200");
+            var node = new Uri("http://localhost:9200");
             var index = "moving_averages";
-            var elasticClient = new ElasticClient(new ConnectionSettings(uri, index));
+            var settings = new ConnectionSettings(node, index);
+            var elasticClient = new ElasticClient(settings);
 
 
             // build queries
+            var sodiumFilter = elasticClient.Search<Result>(s => s
+                .From(0)
+                .Size(50)
+                .Query(q =>
+                    (q.Match(m => m.OnField(o => o.Component).Query("GLUCOSE"))) 
+                )
+            );
+
+            var response = elasticClient.Search<Result>(s => s
+                .Size(0)
+                .Aggregations(a => a
+                    .Terms("comp", t => t 
+                        .Field(o => o.NumericValue)
+                    )
+                )
+            );
+
             QueryContainer sodiumQuery = new TermQuery
             {
                 Field = "comp",
