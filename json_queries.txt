@@ -1,5 +1,68 @@
 json queries
+########################################################
+{
+    "aggs" : {
+        "red_products" : {
+            "filter" : { "term": { "color": "red" } },
+            "aggs" : {
+                "avg_price" : { "avg" : { "field" : "price" } }
+            }
+        }
+    }
+}
+########################################################
+gets glucose values between 70 and 100
 
+{
+"query":{
+   "filtered" : {
+      "query" : {
+         "term" : { "comp" : "GLUCOSE" }
+      },
+      "filter" : {
+            "range" : {
+            "d_val":{"gte":70, "lte":100}
+                }
+            }
+        }
+    }
+}
+    
+#############################################################
+ Because the aggregation operates in the context of the query scope, any filter applied to the query will also apply to the aggregation.
+
+In other words: By default, aggregations operate in the same scope as the query. Put another way, aggregations are calculated on the set of documents that match your query.
+
+Simply put: Search query affects aggregation
+
+{
+"query":{
+   "filtered" : {
+      "query" : {
+         "term" : { "comp" : "GLUCOSE" }
+      },
+      "filter" : {
+            "range" : {
+            "d_val":{"gte":70, "lte":100}
+                }
+            }
+        }
+    }
+    "aggs" : {
+        "glucose": {
+            "avg" : { "field" : "d_val" }
+        }
+    }
+}
+
+A filtered query affects both search results and aggregations.
+
+A filter bucket affects just aggregations.
+
+A post_filter affects just search results. 
+
+
+#############################################################
 {
 	"query": {
 		"query_string": {
