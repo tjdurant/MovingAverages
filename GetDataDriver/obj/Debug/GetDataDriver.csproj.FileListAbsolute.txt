@@ -12,10 +12,6 @@ C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\bin\Debug\Newtons
 C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\obj\Debug\GetDataDriver.csprojResolveAssemblyReference.cache
 C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\obj\Debug\GetDataDriver.exe
 C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\obj\Debug\GetDataDriver.pdb
-C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\bin\Debug\Driver.exe
 C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\bin\Debug\Storage.dll
-C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\bin\Debug\CsvHelper.dll
-C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\bin\Debug\Driver.pdb
 C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\bin\Debug\Storage.pdb
-C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\bin\Debug\CsvHelper.pdb
-C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\bin\Debug\CsvHelper.xml
+C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\obj\Debug\GetDataDriver.csproj.GetDataDriver.exe.config
