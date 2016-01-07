@@ -14,4 +14,3 @@ C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\obj\Debug\GetData
 C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\obj\Debug\GetDataDriver.pdb
 C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\bin\Debug\Storage.dll
 C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\bin\Debug\Storage.pdb
-C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\obj\Debug\GetDataDriver.csproj.GetDataDriver.exe.config

@@ -17,16 +17,20 @@ namespace Driver
         static void Main(string[] args)
         {
             // complex bulk call
-            var descriptor = new BulkDescriptor();
-            var uri = new Uri("http://localhost:9200");
+
+            var node = new Uri("http://DESKTOP-09F78PI:9200");
+            var settings = new ConnectionSettings(node);
+            var elastic = new ElasticClient(settings);
             var index = "moving_averages";
-            var elastic = new ElasticClient(new ConnectionSettings(uri, index));
 
             // create index; index doesn't exist 
-            elastic.CreateIndex(ci => ci.Index("moving_averages").AddMapping<Result>(m => m.MapFromAttributes()));            
+            // VERSION BROKE HERE
+            // elastic.CreateIndex(ci => ci.Index("moving_averages").AddMapping<Result>(m => m.MapFromAttributes()));
 
             // index does exist; apply index for inserts; builds as per document(model)
-            var response = elastic.Map<Result>(m => m.MapFromAttributes().Type<Result>().Indices("moving_averages"));
+
+            //VERSION BROKE HERE
+            //var response = elastic.Map<Result>(m => m.MapFromAttributes().Type<Result>().Indices("moving_averages"));
 
             // csv helper; nuget
             var file = File.OpenText(@"C:\Users\thoma\Documents\00GitHub\00_LOCAL_ONLY\deid-labs-dt\deid-labs-dt.csv");
