@@ -1,4 +1,5 @@
-﻿using Nest;
+﻿using Elasticsearch.Net;
+using Nest;
 using Storage.Documents;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace GetDataDriver
         static void Main(string[] args)
         {
 
-            var node = new Uri("http://localhost:9200");
+            var node = new Uri("http://localhost:9200/");
             var settings = new ConnectionSettings(node);
             var elasticClient = new ElasticClient(settings);
 
@@ -36,6 +37,25 @@ namespace GetDataDriver
                 }
             };
 
+
+            var response = elasticClient.Raw.Search<Result>("moving_averages", new
+            {
+                from = 0,
+                size = 10,
+                fields = new[] { "comp", "name" },
+                query = new
+                {
+                    term = new
+                    {
+                        name = new
+                        {
+                            value = "GLUCOSE",
+                            boost = 2.0
+                        }
+                    }
+                }
+            });
+
             var result = elasticClient.Search<Result>(s => s
                 .From(0)
                 .Size(10)
@@ -43,7 +63,6 @@ namespace GetDataDriver
             );
 
             var glucoseQuery = elasticClient.Search<Result>(s => s
-                .From(0)
                 .Size(10)
                 .Query(q => q
                     .Term(p => p.Component, "GLUCOSE")

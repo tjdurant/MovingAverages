@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Documents\ElasticPropertyAttribute.cs" />
     <Compile Include="Documents\Result.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

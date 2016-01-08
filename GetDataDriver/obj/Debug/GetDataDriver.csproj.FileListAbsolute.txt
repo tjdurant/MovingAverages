@@ -4,6 +4,8 @@ C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\bin\Debug\GetData
 C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\bin\Debug\Elasticsearch.Net.dll
 C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\bin\Debug\Nest.dll
 C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\bin\Debug\Newtonsoft.Json.dll
+C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\bin\Debug\Storage.dll
+C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\bin\Debug\Storage.pdb
 C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\bin\Debug\Elasticsearch.Net.pdb
 C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\bin\Debug\Elasticsearch.Net.xml
 C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\bin\Debug\Nest.pdb
@@ -12,5 +14,3 @@ C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\bin\Debug\Newtons
 C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\obj\Debug\GetDataDriver.csprojResolveAssemblyReference.cache
 C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\obj\Debug\GetDataDriver.exe
 C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\obj\Debug\GetDataDriver.pdb
-C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\bin\Debug\Storage.dll
-C:\Users\thoma\Documents\00GitHub\MovingAverages\GetDataDriver\bin\Debug\Storage.pdb
