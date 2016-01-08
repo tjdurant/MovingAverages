@@ -63,7 +63,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Driver\Driver.csproj">
+    <ProjectReference Include="..\Driver\PutDataDriver.csproj">
       <Project>{f59f9f81-dcba-4fea-ac41-d0a1a6615140}</Project>
       <Name>Driver</Name>
     </ProjectReference>
