@@ -25,10 +25,10 @@ namespace Storage.Documents
         
         public string Id { get; set; }
 
-        //[ElasticProperty(Name m = "")]
+        //[ElasticProperty(Name ="eid")]
         public string EncounterId { get; set; }
 
-        [ElasticProperty(Name = "")]
+        //[ElasticProperty(Name = "pid")]
         public string PatientId { get; set; }
         //[ElasticProperty(Name = "age")]
         public string Age { get; set; }
