@@ -11,7 +11,7 @@ namespace Storage.Documents
     // Elastic put-mapping; The put mapping API allows to register specific mapping 
     // definition for a specific type.
 
-    //ElasticType(Name = "moving_averages" )]
+    [ElasticType(Name = "moving_averages" )]
     public class Result
     {
         /*
@@ -25,42 +25,42 @@ namespace Storage.Documents
         
         public string Id { get; set; }
 
-        //[ElasticProperty(Name ="eid")]
+        [ElasticProperty(Name ="eid")]
         public string EncounterId { get; set; }
 
-        //[ElasticProperty(Name = "pid")]
+        [ElasticProperty(Name = "pid")]
         public string PatientId { get; set; }
-        //[ElasticProperty(Name = "age")]
+        [ElasticProperty(Name = "age")]
         public string Age { get; set; }
-        //[ElasticProperty(Name = "sex")]
+        [ElasticProperty(Name = "sex")]
         public string Sex { get; set; }
-        //[ElasticProperty(Name = "oid")]
+        [ElasticProperty(Name = "oid")]
         public string OrderId { get; set; }
 
         // doesn't run through the analyzer 
-        //[ElasticProperty(Name = "pr_code", Index = FieldIndexOption.NotAnalyzed)]
+        [ElasticProperty(Name = "pr_code", Index = FieldIndexOption.NotAnalyzed)]
         public string ProcedureCode { get; set; }
 
-        //[ElasticProperty(Name = "pr_name", Index = FieldIndexOption.NotAnalyzed)]
+        [ElasticProperty(Name = "pr_name", Index = FieldIndexOption.NotAnalyzed)]
         public string ProcedureName { get; set; }
 
-        //[ElasticProperty(Name = "o_ts")]
+        [ElasticProperty(Name = "o_ts")]
         public string OrderTimestamp { get; set; }
         
-        //[ElasticProperty(Name = "@timestamp", Type = FieldType.Date, DateFormat = "yyyy-MM-dd'T'HH:mm:ss", Store = true)]
+        [ElasticProperty(Name = "@timestamp", Type = FieldType.Date, DateFormat = "yyyy-MM-dd'T'HH:mm:ss", Store = true)]
         public DateTime Timestamp { get; set; }
 
-        //[ElasticProperty(Name = "comp", Index = FieldIndexOption.NotAnalyzed)]
+        [ElasticProperty(Name = "comp", Index = FieldIndexOption.NotAnalyzed)]
         public string Component { get; set; }
 
         
-        //[ElasticProperty(Name = "s_val")]
+        [ElasticProperty(Name = "s_val")]
         public string StringValue { get; set; }
 
-        //[ElasticProperty(Name = "d_val", NumericType = NumberType.Double)]
+        [ElasticProperty(Name = "d_val", NumericType = NumberType.Double)]
         public double NumericValue { get; set; }
 
-        //[ElasticProperty(Name = "camp")]
+        [ElasticProperty(Name = "camp")]
         public string Campus { get; set; }
 
     }
