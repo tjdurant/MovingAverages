@@ -31,8 +31,14 @@ namespace GetDataDriver
                 .QueryRaw(myString)
                 );
 
-            var myAgg = result.Aggs.Average("glucose");
-            Console.WriteLine(myAgg);
+            var name = (string)null;
+
+            var myAgg = result.Aggs.Average("glucose").Value;
+
+            var glucoseAvg = myAgg;
+
+
+            Console.WriteLine(name);
             myFile.Close();
         }
     }
