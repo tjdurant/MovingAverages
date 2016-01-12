@@ -1,4 +1,5 @@
-﻿using Nest;
+﻿using Elasticsearch.Net.Connection;
+using Nest;
 using Storage.Documents;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,12 @@ namespace GetDataDriver
     {
         static void Main(string[] args)
         {
-            var node = new Uri("http://DESKTOP-09F78PI:9200");
+            var node = new Uri("http://localhost:9200");
             var index = "moving_averages";
             var settings = new ConnectionSettings(node, index);
             var elasticClient = new ElasticClient(settings);
-
-            var aggPath = @"C:\Users\thoma\Documents\00GitHub\MovingAverages\JsonQueries\glucoseAggregationAverage.txt";
+ 
+            var aggPath = @"C:\Users\thoma\Documents\00GitHub\MovingAverages\JsonQueries\glucoseMovingAverage.txt";
             var filterPath = @"C:\Users\thoma\Documents\00GitHub\MovingAverages\JsonQueries\glucoseRange.txt";
 
             System.IO.StreamReader myFile = new System.IO.StreamReader(aggPath);
@@ -39,16 +40,15 @@ namespace GetDataDriver
                 .Sort(o => o.OnField(p => p.Timestamp).Ascending())
                 );
 
-            foreach(var hit in glucoseFilter.Hits)
+             
+            var totalDocumentCount = glucoseFilter;
+            foreach (var hit in glucoseFilter.Hits)
             {
                 //2015-10-02T08:58:00
                 Console.WriteLine(hit.Source.Timestamp);
                 DateTime date = hit.Source.Timestamp;
             }
-            
 
-           
-            var totalDocumentCount = glucoseFilter;
             var glucoseAvg = result.Aggs.Average("glucose").Value;
 
             
