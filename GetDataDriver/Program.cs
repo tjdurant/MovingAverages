@@ -1,7 +1,9 @@
-﻿using Elasticsearch.Net.Connection;
+﻿using CsvHelper;
+using Elasticsearch.Net.Connection;
 using Nest;
 using Storage.Documents;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -30,28 +32,48 @@ namespace GetDataDriver
 
             var result = elasticClient.Search<Result>(s => s
                 .From(0)
+                .Size(1000)
                 .QueryRaw(myString)
                 );
 
             var glucoseFilter = elasticClient.Search<Result>(s => s
                 .From(0)
-                .Size(20000)
                 .QueryRaw(filterString)
                 .Sort(o => o.OnField(p => p.Timestamp).Ascending())
                 );
 
-             
-            var totalDocumentCount = glucoseFilter;
-            foreach (var hit in glucoseFilter.Hits)
+            var agBucket = (Bucket)result.Aggregations["my_date_histo"];
+
+
+            using (var sw = new StreamWriter(@"C:\Users\thoma\Documents\00GitHub\MovingAverages\dataTest.csv"))
             {
-                //2015-10-02T08:58:00
-                Console.WriteLine(hit.Source.Timestamp);
-                DateTime date = hit.Source.Timestamp;
+                var writer = new CsvWriter(sw);
+
+                var movingAverageList = new List<KeyValuePair<DateTime, double?>>();
+                foreach (HistogramItem item in agBucket.Items)
+                {
+                    var mov_avg = (ValueMetric)item.Aggregations["glucose_avg"];
+                    var date = item.Date;
+                    
+                    var avg_value = mov_avg.Value;
+                    //Write entire current record
+                    movingAverageList.Add(new KeyValuePair<DateTime, double?>(date, avg_value));
+                    //writer.WriteRecord(num);
+
+                    //var top1 = topHits.Hits<PlacementVerificationES>().Single();
+                    //var reportingObject = RepoToReporting(top1);
+                    //output.Add(reportingObject);
+                    
+                }
+
+                foreach (var element in movingAverageList)
+                {
+                    Console.WriteLine(element);
+                }
+
+                sw.Close();
             }
 
-            var glucoseAvg = result.Aggs.Average("glucose").Value;
-
-            
 
             //for (var i = totalDocumentCount; i – windowSize > 0 && averages.Count() <= 25; i = i – step)
             //{
