@@ -21,29 +21,30 @@ namespace GetDataDriver
             var settings = new ConnectionSettings(node, index);
             var elasticClient = new ElasticClient(settings);
  
-            var aggPath = @"C:\Users\thoma\Documents\00GitHub\MovingAverages\JsonQueries\variableMovingAverage.txt";
+            var aggPath = @"C:\Users\thoma\Documents\00GitHub\MovingAverages\JsonQueries\stepwiseMovingAverage.txt";
 
             //System.IO.StreamReader myFile = new System.IO.StreamReader(aggPath);
             //string myString = myFile.ReadToEnd();
-
 
             var component = "GLUCOSE";
             var greaterThan = "65";
             var lessThan = "105";
             var timeInterval = "day";
+            var startIdx = "0";
+            var stepSize = "1000";
             var windowFrame = "50";
 
             string aggString = File.ReadAllText(aggPath);
-            aggString = aggString   .Replace("component", component)
-                                    .Replace("greaterThan", greaterThan)
-                                    .Replace("lessThan", lessThan)
-                                    .Replace("timeInterval", timeInterval)
-                                    .Replace("windowFrame", windowFrame);
+            aggString = aggString   .Replace("***component", component)
+                                    .Replace("***greaterThan", greaterThan)
+                                    .Replace("***lessThan", lessThan)
+                                    .Replace("***timeInterval", timeInterval)
+                                    .Replace("***startIdx", startIdx)
+                                    .Replace("***stepSize", stepSize)
+                                    .Replace("***windowFrame", windowFrame);
 
             var result = elasticClient.Search<Result>(s => s
-                .Size(1000)
                 .QueryRaw(aggString)
-                .Scroll("1m")
                 );
 
             var agBucket = (Bucket)result.Aggregations["my_date_histo"];
