@@ -16,7 +16,7 @@ namespace GetDataDriver
     {
         static void Main(string[] args)
         {
-            var node = new Uri("http://localhost:9200");
+            var node = new Uri("http://localhost.:9200");
             var index = "moving_averages";
             var settings = new ConnectionSettings(node, index);
             var elasticClient = new ElasticClient(settings);
@@ -30,8 +30,6 @@ namespace GetDataDriver
             var greaterThan = "65";
             var lessThan = "105";
             var timeInterval = "day";
-            var startIdx = "0";
-            var stepSize = "1000";
             var windowFrame = "50";
 
             string aggString = File.ReadAllText(aggPath);
@@ -39,8 +37,6 @@ namespace GetDataDriver
                                     .Replace("***greaterThan", greaterThan)
                                     .Replace("***lessThan", lessThan)
                                     .Replace("***timeInterval", timeInterval)
-                                    .Replace("***startIdx", startIdx)
-                                    .Replace("***stepSize", stepSize)
                                     .Replace("***windowFrame", windowFrame);
 
             var result = elasticClient.Search<Result>(s => s
