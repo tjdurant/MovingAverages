@@ -41,9 +41,9 @@ namespace GetDataDriver
                                     .Replace("windowFrame", windowFrame);
 
             var result = elasticClient.Search<Result>(s => s
-                .From(0)
-                .Size(26358)
+                .Size(1000)
                 .QueryRaw(aggString)
+                .Scroll("1m")
                 );
 
             var agBucket = (Bucket)result.Aggregations["my_date_histo"];
