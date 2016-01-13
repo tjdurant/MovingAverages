@@ -1,4 +1,44 @@
 json queries
+
+{
+  "query": {
+    "filtered": {
+      "query": {
+        "term": {
+          "comp": "GLUCOSE"
+        }
+      },
+      "filter": {
+        "range": {
+          "d_val": {
+            "gte": 70,
+            "lte": 100
+          }
+        }
+      }
+    }
+  },
+  "aggs": {
+    "my_date_histo": {
+      "date_histogram": {
+        "field": "@timestamp",
+        "interval": "day"
+      },
+      "aggs": {
+        "glucose_sum": {
+          "sum": {
+            "field": "d_val"
+          }
+        },
+        "the_movavg": {
+          "moving_avg": {
+            "buckets_path": "glucose_sum"
+          }
+        }
+      }
+    }
+  }
+}
 ########################################################
 {
     "aggs" : {

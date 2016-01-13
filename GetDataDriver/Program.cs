@@ -22,23 +22,31 @@ namespace GetDataDriver
             var elasticClient = new ElasticClient(settings);
  
             var aggPath = @"C:\Users\thoma\Documents\00GitHub\MovingAverages\JsonQueries\glucoseMovingAverage.txt";
-            var filterPath = @"C:\Users\thoma\Documents\00GitHub\MovingAverages\JsonQueries\glucoseRange.txt";
 
             System.IO.StreamReader myFile = new System.IO.StreamReader(aggPath);
             string myString = myFile.ReadToEnd();
 
-            System.IO.StreamReader filterFile = new System.IO.StreamReader(filterPath);
-            string filterString = filterFile.ReadToEnd();
+
+            var component = "glucose";
+            var greaterThan = "65";
+            var lessThan = "105";
+            var timeInterval = "day";
+            var windowFrame = "50";
+
+            string aggString = File.ReadAllText(aggPath);
+            aggString = aggString   .Replace("component", component)
+                                    .Replace("greaterThan", greaterThan)
+                                    .Replace("lessThan", lessThan)
+                                    .Replace("timeInterval", timeInterval)
+                                    .Replace("windowFrame", windowFrame);
 
             var result = elasticClient.Search<Result>(s => s
                 .From(0)
-                .Size(1000)
-                .QueryRaw(myString)
+                .Size(26358)
+                .QueryRaw(aggString)
                 );
 
             var agBucket = (Bucket)result.Aggregations["my_date_histo"];
-
-
 
             var movingAverageList = new List<KeyValuePair<DateTime, double?>>();
             foreach (HistogramItem item in agBucket.Items)
