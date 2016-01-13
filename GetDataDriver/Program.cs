@@ -21,13 +21,13 @@ namespace GetDataDriver
             var settings = new ConnectionSettings(node, index);
             var elasticClient = new ElasticClient(settings);
  
-            var aggPath = @"C:\Users\thoma\Documents\00GitHub\MovingAverages\JsonQueries\glucoseMovingAverage.txt";
+            var aggPath = @"C:\Users\thoma\Documents\00GitHub\MovingAverages\JsonQueries\variableMovingAverage.txt";
 
-            System.IO.StreamReader myFile = new System.IO.StreamReader(aggPath);
-            string myString = myFile.ReadToEnd();
+            //System.IO.StreamReader myFile = new System.IO.StreamReader(aggPath);
+            //string myString = myFile.ReadToEnd();
 
 
-            var component = "glucose";
+            var component = "GLUCOSE";
             var greaterThan = "65";
             var lessThan = "105";
             var timeInterval = "day";
@@ -51,7 +51,7 @@ namespace GetDataDriver
             var movingAverageList = new List<KeyValuePair<DateTime, double?>>();
             foreach (HistogramItem item in agBucket.Items)
             {
-                var mov_avg = (ValueMetric)item.Aggregations["glucose_avg"];
+                var mov_avg = (ValueMetric)item.Aggregations["agg_avg"];
                 var date = item.Date;
                     
                 var avg_value = mov_avg.Value;
