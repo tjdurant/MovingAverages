@@ -1,5 +1,6 @@
 ﻿using CsvHelper;
 using Elasticsearch.Net.Connection;
+using GetDataDriver.Elastic;
 using Nest;
 using Storage.Documents;
 using System;
@@ -16,48 +17,17 @@ namespace GetDataDriver
     {
         static void Main(string[] args)
         {
-            var node = new Uri("http://localhost.:9200");
-            var index = "moving_averages";
-            var settings = new ConnectionSettings(node, index);
-            var elasticClient = new ElasticClient(settings);
- 
+
+            MovingAverage ma = new MovingAverage();
             var aggPath = @"C:\Users\thoma\Documents\00GitHub\MovingAverages\JsonQueries\stepwiseMovingAverage.txt";
 
             //System.IO.StreamReader myFile = new System.IO.StreamReader(aggPath);
             //string myString = myFile.ReadToEnd();
 
-            var component = "GLUCOSE";
-            var greaterThan = "65";
-            var lessThan = "105";
-            var timeInterval = "day";
-            var windowFrame = "50";
+            var glucoseDay = ma.MovingAverageFunction(aggPath, "GLUCOSE", "65", "105", "day", "50");
 
-            string aggString = File.ReadAllText(aggPath);
-            aggString = aggString   .Replace("***component", component)
-                                    .Replace("***greaterThan", greaterThan)
-                                    .Replace("***lessThan", lessThan)
-                                    .Replace("***timeInterval", timeInterval)
-                                    .Replace("***windowFrame", windowFrame);
 
-            var result = elasticClient.Search<Result>(s => s
-                .QueryRaw(aggString)
-                );
-
-            var agBucket = (Bucket)result.Aggregations["my_date_histo"];
-
-            var movingAverageList = new List<KeyValuePair<DateTime, double?>>();
-            foreach (HistogramItem item in agBucket.Items)
-            {
-                var mov_avg = (ValueMetric)item.Aggregations["agg_avg"];
-                var date = item.Date;
-                    
-                var avg_value = mov_avg.Value;
-
-                movingAverageList.Add(new KeyValuePair<DateTime, double?>(date, avg_value));
-                    
-            }
-
-            foreach (var element in movingAverageList)
+            foreach (var element in glucoseDay)
             {
                 Console.WriteLine(element);
             }
