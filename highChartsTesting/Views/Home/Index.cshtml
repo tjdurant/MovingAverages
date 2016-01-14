@@ -1,31 +1,73 @@
-﻿@{
+﻿@section scripts{
+    @*you have to import the highcharts libraries; later you can download the libraries and just reference min.js
+        files in the content directory; ~/Content/library/plugins...etc*@
+
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/javascript/highcharts/linegraph.js")"></script>
+}
+
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+<h2>HighCharts Testing</h2>
+
+<div id="container" style="width:100%; height:400px;"></div>
+
+<script type="text/javascript">
+     $(document).ready(function() {
+         $("#buttonSubmit").click(function() {
+             $("#Panel1").animate(
+            {
+                width: "350px",
+                opacity: 0.5,
+                fontSize: "16px"
+            }, 1800);
+         });
+     });
+
+     $(function () {
+         $('#container').highcharts({
+             chart: {
+                 type: 'bar'
+             },
+             title: {
+                 text: 'Fruit Consumption'
+             },
+             xAxis: {
+                 categories: ['Apples', 'Bananas', 'Oranges']
+             },
+             yAxis: {
+                 title: {
+                     text: 'Fruit eaten'
+                 }
+             },
+             series: [{
+                 name: 'Jane',
+                 data: [1, 0, 4]
+             }, {
+                 name: 'John',
+                 data: [5, 7, 3]
+             }],
+         });
+     });
+
+     var chart1; // globally available
+     $(function () {
+         chart1 = new Highcharts.StockChart({
+             chart: {
+                 renderTo: 'container'
+             },
+             rangeSelector: {
+                 selected: 1
+             },
+             series: [{
+                 name: 'USD to EUR',
+                 data: usdtoeur // predefined JavaScript array
+             }]
+         });
+     });
+
+</script>

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GetDataDriver.Elastic
 {
-    class MovingAverage
+    public class MovingAverage
     {
         // custom data object: public string component list of moving averag
         public List<KeyValuePair<DateTime, double?>> MovingAverageFunction(string aggPath, string component, 

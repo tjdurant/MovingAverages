@@ -1,8 +1,10 @@
-﻿using System;
+﻿using GetDataDriver.Elastic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace highChartsTesting.Controllers
 {
@@ -10,6 +12,16 @@ namespace highChartsTesting.Controllers
     {
         public ActionResult Index()
         {
+            MovingAverage ma = new MovingAverage();
+            JavaScriptSerializer javaSerial = new JavaScriptSerializer();
+
+            var aggPath = @"C:\Users\thoma\Documents\00GitHub\MovingAverages\JsonQueries\stepwiseMovingAverage.txt";
+
+            //System.IO.StreamReader myFile = new System.IO.StreamReader(aggPath);
+            //string myString = myFile.ReadToEnd();
+
+            var glucoseDay = ma.MovingAverageFunction(aggPath, "GLUCOSE", "65", "105", "day", "50");
+
             return View();
         }
 
