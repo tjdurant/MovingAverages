@@ -27,12 +27,6 @@ namespace highChartsTesting
 
             var glucoseDay = ma.MovingAverageFunction(aggPath, "GLUCOSE", "65", "105", "day", "50");
 
-            
-
-            foreach (var element in glucoseDay)
-            {
-                Console.WriteLine(element);
-            }
         }
     }
 }
