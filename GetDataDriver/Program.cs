@@ -1,6 +1,7 @@
 ﻿using CsvHelper;
 using Elasticsearch.Net.Connection;
-using GetDataDriver.Elastic;
+using highChartsTesting.Elastic;
+using highChartsTesting.Models;
 using Nest;
 using Storage.Documents;
 using System;
@@ -11,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GetDataDriver
+namespace highChartsTesting
 {
     class Program
     {
@@ -26,6 +27,7 @@ namespace GetDataDriver
 
             var glucoseDay = ma.MovingAverageFunction(aggPath, "GLUCOSE", "65", "105", "day", "50");
 
+            
 
             foreach (var element in glucoseDay)
             {

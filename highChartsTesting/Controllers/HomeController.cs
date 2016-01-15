@@ -1,4 +1,5 @@
-﻿using GetDataDriver.Elastic;
+﻿using highChartsTesting.Elastic;
+using highChartsTesting.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace highChartsTesting.Controllers
     {
         public ActionResult Index()
         {
+            MovingAverageModels tvModel = new MovingAverageModels();
             MovingAverage ma = new MovingAverage();
             JavaScriptSerializer javaSerial = new JavaScriptSerializer();
 
@@ -21,6 +23,10 @@ namespace highChartsTesting.Controllers
             //string myString = myFile.ReadToEnd();
 
             var glucoseDay = ma.MovingAverageFunction(aggPath, "GLUCOSE", "65", "105", "day", "50");
+
+
+            //tvModel.date = glucoseDay[0];
+            //tvModel.value = glucoseDay[]
 
             return View();
         }

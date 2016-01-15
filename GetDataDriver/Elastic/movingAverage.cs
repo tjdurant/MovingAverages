@@ -1,4 +1,5 @@
-﻿using Nest;
+﻿using highChartsTesting.Models;
+using Nest;
 using Storage.Documents;
 using System;
 using System.Collections.Generic;
@@ -7,14 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GetDataDriver.Elastic
+namespace highChartsTesting.Elastic
 {
     public class MovingAverage
     {
         // custom data object: public string component list of moving averag
-        public List<KeyValuePair<DateTime, double?>> MovingAverageFunction(string aggPath, string component, 
-            string greaterThan, string lessThan, string timeInterval, string windowFrame)
+
+
+        public List<MovingAverageModels> MovingAverageFunction(string aggPath, string component, 
+                                                                string greaterThan, string lessThan, 
+                                                                string timeInterval, string windowFrame)
         {
+
             var node = new Uri("http://localhost.:9200");
             var index = "moving_averages";
             var settings = new ConnectionSettings(node, index);
@@ -27,24 +32,41 @@ namespace GetDataDriver.Elastic
                                     .Replace("***timeInterval", timeInterval)
                                     .Replace("***windowFrame", windowFrame);
 
-            var result = elasticClient.Search<Result>(s => s
+            var searchResult = elasticClient.Search<Result>(s => s
                 .QueryRaw(aggString)
                 );
 
-            var agBucket = (Bucket)result.Aggregations["my_date_histo"];
+            var agBucket = (Bucket)searchResult.Aggregations["my_date_histo"];
 
-            var movingAverageList = new List<KeyValuePair<DateTime, double?>>();
+            var ma = new List<MovingAverageModels>();
+
+
             foreach (HistogramItem item in agBucket.Items)
             {
                 var mov_avg = (ValueMetric)item.Aggregations["agg_avg"];
+
+                // convert date_histogram to dateTime object
                 var date = item.Date;
 
+                // convert valueMetric to value
                 var avg_value = mov_avg.Value;
 
-                movingAverageList.Add(new KeyValuePair<DateTime, double?>(date, avg_value));
+                var avgResult = new MovingAverageVals
+                {
+                    Value = avg_value,
+                    Date = date
+                };
 
+                var cur = new MovingAverageModels
+                {
+                    Component = component,
+                    TimeResolution = timeInterval,
+                    AvgVals = avgResult
+                };
+
+                ma.Add(cur);
             }
-            return movingAverageList;
+            return ma;
         }
     }
 }
