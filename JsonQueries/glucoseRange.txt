@@ -1,0 +1,15 @@
+{
+
+   "filtered" : {
+      "query" : {
+         "term" : { "comp" : "GLUCOSE" }
+      },
+      "filter" : {
+            "range" : {
+            "d_val":{"gte":65, "lte":110}
+                }
+            }
+        }
+    }
+  }
+

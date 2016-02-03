@@ -23,6 +23,7 @@ namespace highChartsTesting.Controllers
             //string myString = myFile.ReadToEnd();
 
             var glucoseDay = ma.MovingAverageFunction(aggPath, "GLUCOSE", "65", "105", "day", "50");
+            
 
 
             //tvModel.date = glucoseDay[0];

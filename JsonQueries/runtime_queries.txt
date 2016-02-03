@@ -1,0 +1,6 @@
+{
+  "query": { "match_all": {} },
+  "sort": { "o_ts": { "order": "desc" } },
+  "from": 10,
+  "size": 20
+}

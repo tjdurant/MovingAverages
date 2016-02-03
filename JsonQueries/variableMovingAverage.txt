@@ -1,0 +1,40 @@
+{
+
+    "filtered": {
+      "query": {
+        "term": {
+          "comp": "component"
+        }
+      },
+      "filter": {
+        "range": {
+          "d_val": {
+            "gte": greaterThan,
+            "lte": lessThan
+          }
+        }
+      }
+    }
+  },
+  "aggs": {
+    "my_date_histo": {
+      "date_histogram": {
+        "field": "@timestamp",
+        "interval": "timeInterval"
+      },
+      "aggs": {
+        "agg_avg": {
+          "avg": {
+            "field": "d_val"
+          }
+        },
+        "the_movavg": {
+          "moving_avg": {
+            "buckets_path": "agg_avg",
+            "window": windowFrame
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+   "filtered" : {
+      "query" : {
+         "term" : { "comp" : "GLUCOSE" }
+      },
+      "filter" : {
+            "range" : {
+            "d_val":{"gte":70, "lte":100}
+                }
+            }
+        }
+    },
+    "aggs" : {
+        "glucose": {
+            "avg" : { "field" : "d_val" }
+        }
+    }
+}
